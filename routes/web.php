@@ -21,6 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/device/{device}/toggle', [DeviceController::class, 'toggle'])
         ->middleware('rule')
         ->name('device.toggle');
+    Route::get('/logs', [LogController::class, 'index'])
+        ->middleware('role:Owner')
+        ->name('logs');
 });
 
 require __DIR__.'/auth.php';
