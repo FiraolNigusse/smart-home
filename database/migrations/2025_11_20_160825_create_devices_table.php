@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('type'); // light, lock, thermostat
+            $table->string('state')->default('off');
             $table->timestamps();
         });
     }
