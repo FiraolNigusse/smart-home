@@ -17,8 +17,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    // Device routes
-    Route::post('/device/{device}/toggle', [DeviceController::class, 'toggle'])->name('device.toggle');
+    // Device routes - protected by auth AND rule middleware
+    Route::post('/device/{device}/toggle', [DeviceController::class, 'toggle'])
+        ->middleware('rule')
+        ->name('device.toggle');
 });
 
 require __DIR__.'/auth.php';
